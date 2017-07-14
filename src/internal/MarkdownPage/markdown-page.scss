@@ -48,14 +48,13 @@
   }
 
   h2 {
-
     & + table {
       margin-top: 0;
     }
   }
 
   > p:not(:empty):first-child {
-     margin-bottom: 4rem;
+    margin-bottom: 4rem;
 
     strong {
       font-size: 1.125rem;
@@ -110,7 +109,10 @@
     padding: .25rem;
     background-color: $field-01;
     color: $color__navy-gray-6;
-    font-family: Consolas, Menlo, Monaco, "Andale Mono WT", "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", "Courier New", Courier, monospace;
+    font-family: Consolas, Menlo, Monaco, "Andale Mono WT", "Andale Mono",
+      "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono",
+      "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L",
+      "Courier New", Courier, monospace;
   }
 
   pre {
@@ -150,7 +152,6 @@
     }
 
     thead {
-
       th {
         font-size: rem(12px);
         text-transform: uppercase;
@@ -164,7 +165,6 @@
     }
 
     tbody {
-
       tr {
         border-bottom: 1px solid $color__gray-1;
 
@@ -185,8 +185,8 @@
     }
   }
 
-  ul,
-  ol {
+  ul:not(.bx--accordion),
+  ol:not(.bx--accordion) {
     @include font-size('16');
     @include font-smoothing;
     margin-left: 1.5rem;
@@ -204,7 +204,7 @@
     }
   }
 
-  ul li {
+  ul li:not(.bx--accordion__item) {
     list-style-type: disc;
   }
 
@@ -223,7 +223,6 @@
 
     img:first-child:nth-last-child(2),
     img:first-child:nth-last-child(2) ~ img {
-
       @include breakpoint('900px') {
         width: 50%;
       }
@@ -414,7 +413,7 @@
       strong {
         position: absolute;
         top: 0;
-        left:0;
+        left: 0;
         z-index: 2;
         color: $color__white;
         letter-spacing: 0;

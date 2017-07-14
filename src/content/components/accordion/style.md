@@ -40,3 +40,122 @@ Avoid having any text within 16px / 1rem of the Accordion's sides. Additionally,
 
 ![Structure and spacing measurements for Accordion](images/accordion-style-1.png)
 _Structure and spacing measurements for Accordion | px / rem_
+
+<div data-insert-component="InteractiveSpec">
+  <ul
+    data-accordion
+    class="bx--accordion"
+    data-spec-margin
+  >
+    <li
+      tabIndex="0"
+      data-accordion-item
+      class="bx--accordion__item bx--accordion__item--active"
+    >
+      <div class="bx--accordion__heading" data-spec-padding>
+        <svg
+          class="bx--accordion__arrow"
+          width="8"
+          height="12"
+          viewBox="0 0 8 12"
+          fillRule="evenodd"
+        >
+          <path d="M0 10.6L4.7 6 0 1.4 1.4 0l6.1 6-6.1 6z" />
+        </svg>
+        <p class="bx--accordion__title" data-spec-margin>
+          Label
+        </p>
+      </div>
+      <div class="bx--accordion__content" data-spec-padding>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+          do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          Ut enim ad minim veniam, quis nostrud exercitation ullamco
+          laboris nisi ut aliquip ex ea commodo consequat.
+        </p>
+      </div>
+    </li>
+    <li
+      tabIndex="0"
+      data-accordion-item
+      class="bx--accordion__item"
+      data-spec-height="right"
+    >
+      <div class="bx--accordion__heading">
+        <svg
+          class="bx--accordion__arrow"
+          width="8"
+          height="12"
+          viewBox="0 0 8 12"
+          fillRule="evenodd"
+          data-spec-height
+        >
+          <path d="M0 10.6L4.7 6 0 1.4 1.4 0l6.1 6-6.1 6z" />
+        </svg>
+        <p class="bx--accordion__title">
+          Label with multiple words
+        </p>
+      </div>
+      <div class="bx--accordion__content">
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+          do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          Ut enim ad minim veniam, quis nostrud exercitation ullamco
+          laboris nisi ut aliquip ex ea commodo consequat.
+        </p>
+      </div>
+    </li>
+    <li
+      tabIndex="0"
+      data-accordion-item
+      class="bx--accordion__item"
+    >
+      <div class="bx--accordion__heading">
+        <svg
+          class="bx--accordion__arrow"
+          width="8"
+          height="12"
+          viewBox="0 0 8 12"
+          fillRule="evenodd"
+        >
+          <path d="M0 10.6L4.7 6 0 1.4 1.4 0l6.1 6-6.1 6z" />
+        </svg>
+        <p class="bx--accordion__title">Label</p>
+      </div>
+      <div class="bx--accordion__content">
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+          do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          Ut enim ad minim veniam, quis nostrud exercitation ullamco
+          laboris nisi ut aliquip ex ea commodo consequat.
+        </p>
+      </div>
+    </li>
+    <li
+      tabIndex="0"
+      data-accordion-item
+      class="bx--accordion__item"
+    >
+      <div class="bx--accordion__heading">
+        <svg
+          class="bx--accordion__arrow"
+          width="8"
+          height="12"
+          viewBox="0 0 8 12"
+          fillRule="evenodd"
+        >
+          <path d="M0 10.6L4.7 6 0 1.4 1.4 0l6.1 6-6.1 6z" />
+        </svg>
+        <p class="bx--accordion__title">Label</p>
+      </div>
+      <div class="bx--accordion__content">
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+          do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          Ut enim ad minim veniam, quis nostrud exercitation ullamco
+          laboris nisi ut aliquip ex ea commodo consequat.
+        </p>
+      </div>
+    </li>
+  </ul>
+</div>

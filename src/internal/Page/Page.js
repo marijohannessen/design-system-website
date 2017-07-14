@@ -16,6 +16,7 @@ import BrandColors from '../../internal/BrandColors';
 import MotionExample from '../../internal/MotionExample';
 import MarkdownPage from '../../internal/MarkdownPage';
 import Video from '../../internal/Video';
+import InteractiveSpec from '../../internal/InteractiveSpec';
 
 class Page extends Component {
   static propTypes = {
@@ -49,9 +50,10 @@ class Page extends Component {
 
   addPageClass = () => {
     const path = window.location.pathname.split('/');
-    const dataAttr = path.length > 3
-      ? `${path[1]}-${path[3]}-${path[2]}`
-      : `${path[1]}-${path[2]}`;
+    const dataAttr =
+      path.length > 3
+        ? `${path[1]}-${path[3]}-${path[2]}`
+        : `${path[1]}-${path[2]}`;
     return dataAttr;
   };
 
@@ -109,6 +111,7 @@ class Page extends Component {
       DosAndDonts3,
       DosAndDonts4,
       Video,
+      InteractiveSpec,
     };
 
     const insertComponent = [
@@ -131,7 +134,7 @@ class Page extends Component {
             <NewComponent darkBg={needsDarkBg}>
               {compChildren}
             </NewComponent>,
-            component
+            component,
           );
         }
       } else if (comp === 'MotionExample') {
@@ -142,15 +145,18 @@ class Page extends Component {
             correctText={props[1]}
             incorrectText={props[2]}
           />,
-          component
+          component,
         );
       } else if (comp === 'Video') {
         const videoProp = component.dataset.props;
+        ReactDOM.render(<NewComponent videoLink={videoProp} />, component);
+      } else if (comp === 'InteractiveSpec') {
+        const compChildren = component.innerHTML;
         ReactDOM.render(
-          <NewComponent
-            videoLink={videoProp}
-          />,
-          component
+          <NewComponent>
+            {compChildren}
+          </NewComponent>,
+          component,
         );
       } else {
         ReactDOM.render(<NewComponent />, component);
@@ -177,9 +183,10 @@ class Page extends Component {
   render() {
     const { content, label, title } = this.props;
     const contentType = typeof content;
-    const pageContent = contentType === 'object' || title === ''
-      ? content
-      : <MarkdownPage content={content} />;
+    const pageContent =
+      contentType === 'object' || title === ''
+        ? content
+        : <MarkdownPage content={content} />;
     return (
       <main
         role="main"
