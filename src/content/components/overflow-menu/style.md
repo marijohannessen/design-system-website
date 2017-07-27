@@ -52,3 +52,30 @@ The height of an Overflow Menu is determined by the amount of content in the men
 ![Structure and spacing measurements for an overflow menu](images/overflow-menu-style-3.png)
 
 _Structure and spacing measurements for Overflow Menu | px / rem_
+
+<div data-insert-component="InteractiveSpec">
+  <div data-overflow-menu tabindex="0" aria-label="Overflow menu description" class="bx--overflow-menu">
+    <svg class="bx--overflow-menu__icon" width="4" height="20" viewBox="0 0 4 20" fill-rule="evenodd">
+      <circle cx="2" cy="2" r="2"></circle>
+      <circle cx="2" cy="10" r="2"></circle>
+      <circle cx="2" cy="18" r="2"></circle>
+    </svg>
+    <ul class="bx--overflow-menu-options">
+      <li class="bx--overflow-menu-options__option">
+        <button class="bx--overflow-menu-options__btn">Stop app</button>
+      </li>
+      <li class="bx--overflow-menu-options__option">
+        <button class="bx--overflow-menu-options__btn">Restart app</button>
+      </li>
+      <li class="bx--overflow-menu-options__option">
+        <button class="bx--overflow-menu-options__btn">Rename app</button>
+      </li>
+      <li class="bx--overflow-menu-options__option">
+        <button class="bx--overflow-menu-options__btn">Edit routes and access</button>
+      </li>
+      <li class="bx--overflow-menu-options__option bx--overflow-menu-options__option--danger">
+        <button class="bx--overflow-menu-options__btn">Delete app</button>
+      </li>
+    </ul>
+  </div>
+</div>

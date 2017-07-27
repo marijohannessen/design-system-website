@@ -49,3 +49,10 @@ _Structure and spacing measurements for Text Input | px / rem_
 ![Active, help, or disabled states for Text Input](images/text-input-style-3.png)
 
 _Examples of active, help, and disabled Text Input states_
+
+<div data-insert-component="InteractiveSpec">
+  <div class="bx--form-item">
+    <label for="text-input-1" class="bx--label">Text field label</label>
+    <input id="text-input-1" type="text" class="bx--text-input" placeholder="Hint text here">
+  </div>
+</div>

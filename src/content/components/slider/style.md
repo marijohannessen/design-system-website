@@ -31,3 +31,22 @@ The width of a Slider varies based on page content and layout.
 ![Structure and spacing measurements for Slider](images/slider-style-1.png)
 
 _Structure and spacing measurements for Slider | px / rem_
+
+<div data-insert-component="InteractiveSpec">
+  <div class="bx--form-item">
+    <label for="slider" class="bx--label">Slider Label</label>
+    <div class="bx--slider-test">
+    <div class="bx--slider-container">
+      <span class="bx--slider__range-label">0</span>
+      <div class="bx--slider" data-slider data-slider-input-box="#slider-input-box">
+        <div class="bx--slider__track"></div>
+        <div class="bx--slider__filled-track"></div>
+        <div class="bx--slider__thumb" tabindex="0"></div>
+        <input id="slider" class="bx--slider__input" type="range" step="1" min="0" max="100" value="50">
+      </div>
+      <span class="bx--slider__range-label">100</span>
+      <input id="slider-input-box" type="text" class="bx--text-input bx-slider-text-input" placeholder="0">
+    </div>
+  </div>
+  </div>
+</div>

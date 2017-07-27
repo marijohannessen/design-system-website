@@ -31,15 +31,8 @@ There is no limit to the height of an open row, however, the padding specs below
 
 Avoid having any text within 16px / 1rem of the Accordion's sides. Additionally, include padding between labels, body copy, and separation lines to provide breathing room between elements.
 
-| SPACING              | PX | REM |
-|----------------------|----|-----|
-| Chevron & label      | 16 | 1   |
-| Content & right edge | 8  | 0.5 |
-| Label & content      | 16 | 1   |
-| Content & line       | 24 | 1.5 |
-
-![Structure and spacing measurements for Accordion](images/accordion-style-1.png)
-_Structure and spacing measurements for Accordion | px / rem_
+ ![Structure and spacing measurements for Accordion](images/accordion-style-1.png)
+_Structure and spacing measurements for Accordion | px / rem_ 
 
 <div data-insert-component="InteractiveSpec">
   <ul
@@ -81,7 +74,7 @@ _Structure and spacing measurements for Accordion | px / rem_
       class="bx--accordion__item"
       data-spec-height="right"
     >
-      <div class="bx--accordion__heading">
+      <div class="bx--accordion__heading" data-spec-padding>
         <svg
           class="bx--accordion__arrow"
           width="8"
@@ -92,11 +85,11 @@ _Structure and spacing measurements for Accordion | px / rem_
         >
           <path d="M0 10.6L4.7 6 0 1.4 1.4 0l6.1 6-6.1 6z" />
         </svg>
-        <p class="bx--accordion__title">
+        <p class="bx--accordion__title" data-spec-margin>
           Label with multiple words
         </p>
       </div>
-      <div class="bx--accordion__content">
+      <div class="bx--accordion__content" data-spec-padding>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
           do eiusmod tempor incididunt ut labore et dolore magna aliqua.
@@ -110,7 +103,7 @@ _Structure and spacing measurements for Accordion | px / rem_
       data-accordion-item
       class="bx--accordion__item"
     >
-      <div class="bx--accordion__heading">
+      <div class="bx--accordion__heading" data-spec-padding>
         <svg
           class="bx--accordion__arrow"
           width="8"
@@ -120,9 +113,9 @@ _Structure and spacing measurements for Accordion | px / rem_
         >
           <path d="M0 10.6L4.7 6 0 1.4 1.4 0l6.1 6-6.1 6z" />
         </svg>
-        <p class="bx--accordion__title">Label</p>
+        <p class="bx--accordion__title" data-spec-margin>Label</p>
       </div>
-      <div class="bx--accordion__content">
+      <div class="bx--accordion__content" data-spec-padding>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
           do eiusmod tempor incididunt ut labore et dolore magna aliqua.
@@ -136,7 +129,7 @@ _Structure and spacing measurements for Accordion | px / rem_
       data-accordion-item
       class="bx--accordion__item"
     >
-      <div class="bx--accordion__heading">
+      <div class="bx--accordion__heading" data-spec-padding>
         <svg
           class="bx--accordion__arrow"
           width="8"
@@ -146,9 +139,9 @@ _Structure and spacing measurements for Accordion | px / rem_
         >
           <path d="M0 10.6L4.7 6 0 1.4 1.4 0l6.1 6-6.1 6z" />
         </svg>
-        <p class="bx--accordion__title">Label</p>
+        <p class="bx--accordion__title" data-spec-margin>Label</p>
       </div>
-      <div class="bx--accordion__content">
+      <div class="bx--accordion__content" data-spec-padding>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
           do eiusmod tempor incididunt ut labore et dolore magna aliqua.
@@ -159,3 +152,9 @@ _Structure and spacing measurements for Accordion | px / rem_
     </li>
   </ul>
 </div>
+
+| SPACING              | PX | REM |
+|----------------------|----|-----|
+| Chevron & label      | 16 | 1   |
+| Label & content      | 16 | 1   |
+| Content & line       | 24 | 1.5 |

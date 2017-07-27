@@ -51,3 +51,24 @@ Single or Double >> needs to be explained more in paragraph form
 
 ![Structure and spacing measurements for Modules](images/module-style-2.png)
 _Structure and spacing measurements for a Module | px / rem_
+
+<div data-insert-component="InteractiveSpec">
+  <div class="bx--module bx--module--double">
+    <div class="bx--module__inner">
+      <div class="bx--module__content bx--module__content--centered">
+        <p>
+          Example centered content without header
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="bx--module bx--module--single">
+    <div class="bx--module__inner">
+      <div class="bx--module__content">
+        <p>
+          Example content without header
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -37,3 +37,14 @@ Toggle labels should be set in sentence case, with only the first word in a phra
 > ![Structure and spacing measurements for toggle](images/toggle-style-2.png)
 
 _Structure and spacing measurements for Toggle | px / rem_
+
+<div data-insert-component="InteractiveSpec">
+  <div class="bx--form-item">
+    <input class="bx--toggle" id="toggle1" type="checkbox">
+    <label class="bx--toggle__label" for="toggle1">
+      <span class="bx--toggle__text--left">Off</span>
+      <span class="bx--toggle__appearance"></span>
+      <span class="bx--toggle__text--right">On</span>
+    </label>
+  </div>
+</div>

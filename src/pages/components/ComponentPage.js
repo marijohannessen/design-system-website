@@ -89,7 +89,7 @@ class ComponentPage extends Component {
         </Tab>
       </Tabs>
     );
-    return <Page label="component" title={componentTitle} content={content} />;
+    return <Page label="component" title={componentTitle} content={content} params={params} />;
   }
 }
 

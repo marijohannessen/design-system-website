@@ -37,3 +37,26 @@ The width of an uploaded file varies based on the content and layout of a design
 ![Structure and spacing measurements for File Uploader](images/file-uploader-style-1.png)
 
 _Structure and spacing measurements for File Uploader | px / rem_
+
+<div data-insert-component="InteractiveSpec">
+  <div class="bx--form-item">
+    <strong class="bx--label">Account photo</strong>
+    <p class="bx--label-description">only .jpg and .png files. 500kb max file size.</p>
+    <div class="bx--file" data-file>
+      <label
+        for="your-file-importer-id-here"
+        class="bx--file-btn bx--btn bx--btn--secondary"
+        role="button"
+        tabindex="0">Add files</label>
+      <input
+        type="file"
+        class="bx--file-input"
+        id="your-file-importer-id-here"
+        data-file-uploader
+        data-target="[data-file-container]"
+        multiple
+      />
+      <div data-file-container class="bx--file-container"></div>
+    </div>
+  </div>
+</div>

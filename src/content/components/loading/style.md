@@ -31,3 +31,13 @@ _
 ![Large spinner in context example](images/loading-style-4.png)
 _
 _Example of a large loading spinner in product context_
+
+<div data-insert-component="InteractiveSpec">
+  <div class="bx--loading-overlay">
+    <div data-loading class="bx--loading">
+      <svg class="bx--loading__svg" viewBox="-75 -75 150 150">
+        <circle cx="0" cy="0" r="37.5" />
+      </svg>
+    </div>
+  </div>
+</div>

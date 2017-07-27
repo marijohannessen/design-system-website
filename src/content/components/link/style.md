@@ -36,3 +36,7 @@ Links can be grouped horizontally or vertically and must be underlined.
 ![Link structure and spacing measurements ](images/link-style-2.png)
 
 _Structure and spacing measurements for Link | px / rem_
+
+<div data-insert-component="InteractiveSpec">
+  <a href="#" class="bx--link">Link</a>
+</div>

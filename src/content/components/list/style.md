@@ -32,3 +32,16 @@ Level 1 unordered list points are bulleted while Level 2 points are marked with 
   </div>
 </div>
 _Structure and spacing measurements for an ordered and an unordered List | px / rem_
+
+<div data-insert-component="InteractiveSpec">
+  <ol class="bx--list--ordered">
+    <li class="bx--list__item">Ordered nested list level 1
+      <ol class="bx--list--nested">
+        <li class="bx--list__item">Ordered nested list level 2</li>
+        <li class="bx--list__item">Ordered nested list level 2</li>
+      </ol>
+    </li>
+    <li class="bx--list__item">Ordered nested list level 1</li>
+    <li class="bx--list__item">Ordered nested list level 1</li>
+  </ol>
+</div>

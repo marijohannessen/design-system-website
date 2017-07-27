@@ -30,7 +30,6 @@
   "components": {
     "title": "Components",
     "subnav": {
-      "overview": "Overview",
       "accordion": "Accordion",
       "breadcrumb": "Breadcrumb",
       "button": "Button",

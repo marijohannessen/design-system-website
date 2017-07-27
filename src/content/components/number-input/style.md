@@ -31,3 +31,20 @@ The height of a Number Input is always the same. The width however, varies based
 ![Structure and spacing for number input](images/number-input-style-1.png)
 
 _Structure and spacing measurements for a Number Input | px / rem_
+
+<div data-insert-component="InteractiveSpec">
+  <div class="bx--form-item">
+    <label for="number-input" class="bx--label">Instances</label>
+    <div data-numberinput class="bx--number">
+      <input id="number-input" type="number" min="0" max="100" value="1">
+      <div class="bx--number__controls">
+        <svg class="up-icon" viewBox="0 -6 10 5" width="10" height="5" fill-rule="evenodd">
+          <path d="M10 5L5 0 0 5z"></path>
+        </svg>
+        <svg class="down-icon" viewBox="0 6 10 5" width="10" height="5" fill-rule="evenodd">
+          <path d="M10 0L5 5 0 0z"></path>
+        </svg>
+      </div>
+    </div>
+  </div>
+</div>

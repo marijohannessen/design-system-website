@@ -36,3 +36,11 @@ _Structure and spacing measurements for Content Switcher | px / rem_
 ### States
 
 Content Switchers have two states: selected and non-selected. Selected states are a solid color. There must always be only one selected state, no more, no less. Unselected options have a 1px border with no fill.
+
+<div data-insert-component="InteractiveSpec">
+  <div data-content-switcher class="bx--content-switcher">
+    <button class="bx--content-switcher-btn bx--content-switcher--selected" data-target=".demo--panel--opt-1">Option 1</button>
+    <button class="bx--content-switcher-btn" data-target=".demo--panel--opt-2">Option 2</button>
+    <button class="bx--content-switcher-btn" data-target=".demo--panel--opt-3">Option 3</button>
+  </div>
+</div>

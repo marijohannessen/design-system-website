@@ -1,15 +1,49 @@
 .spectacular-wrapper {
   background: $ui-02;
   position: relative;
-  margin-top: 4rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
   width: 100%;
   max-width: 38rem;
-  // width: 700px;
-  // height: 700px;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 1rem;
+  min-height: 400px;
+
+  &__header {
+    width: 100%;
+    height: 50px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+  }
+
+  &__filter-btn {
+    cursor: pointer;
+    width: 3rem;
+    height: 50px;
+    background: $ui-02;
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 1rem;
+
+    &:hover {
+      .filter-icon {
+        fill: $brand-02;
+      }
+    }
+
+    .filter-icon {
+      fill: $brand-01;
+    }
+  }
 
   > div:nth-child(2) {
     margin-top: 4rem;
@@ -22,7 +56,14 @@
     top: 0;
     left: 0;
     margin-bottom: 4rem;
-    z-index: 2;
+    transition: 300ms ease;
+    transform: translateX(-100%);
+    z-index: 1;
+    height: 50px;
+
+    &--active {
+      transform: translateX(50px);
+    }
   }
 
   .bx--form-item.bx--checkbox-wrapper {
@@ -36,31 +77,33 @@
   .bx--form-item.bx--checkbox-wrapper:last-of-type {
     margin-bottom: 1rem;
   }
+
+  .bx--breadcrumb {
+    font-size: 0;
+  }
+
+  .bx--breadcrumb-item:after {
+    font-size: 14px;
+  }
+
+  .bx--breadcrumb-item:last-of-type {
+    margin-right: 0;
+
+    &::after {
+      margin-right: 0;
+    }
+  }
 }
 
-.comp:hover {
+.parent-component:hover {
   cursor: pointer;
-  .twin {
+
+  .twin-component {
     opacity: 1;
   }
 }
 
-// .bx--detail-page-header--no-tabs,
-// .bx--detail-page-header--with-tabs,
-// .bx--interior-left-nav {
-//   position: static;
-//   top: auto;
-// }
-
-// .bx--interior-left-nav {
-//   height: 70%;
-// }
-
-// .bx--interior-left-nav-collapse {
-//   margin-bottom: 0 !important;
-// }
-
-.twin {
+.twin-component {
   position: absolute;
   display: none;
   border-style: solid;
@@ -85,7 +128,7 @@
   display: block;
 }
 
-.twin.margin {
+.twin-component.margin {
   box-sizing: content-box;
 }
 
@@ -94,8 +137,7 @@
   display: block;
 }
 
-// .bx--modal {
-//   background-color: transparent;
-//   z-index: 0 !important;
-//   position: static;
-// }
+.interactive-mode-checkbox {
+  position: absolute;
+  right: 0;
+}

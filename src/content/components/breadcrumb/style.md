@@ -30,3 +30,17 @@ The on-click dropdown should follow the [Overflow Menu](/components/overflow-men
 
 ![Truncated breadcrumb dropdown example](images/breadcrumb-style-2.png)
 _Structure and spacing measurements for Breadcrumb | px / rem_
+
+<div data-insert-component="InteractiveSpec">
+  <div class="bx--breadcrumb" style="padding-bottom: 8px" data-spec-padding>
+    <div class="bx--breadcrumb-item" id="one" data-spec-margin>
+      <a href="#" class="bx--link">Breadcrumb 1</a>
+    </div>
+    <div class="bx--breadcrumb-item" id="two" data-spec-margin>
+      <a href="#" class="bx--link">Breadcrumb 2</a>
+    </div>
+    <div class="bx--breadcrumb-item" id="three" data-spec-margin>
+      <a href="#" class="bx--link">Breadcrumb 3</a>
+    </div>
+  </div>
+</div>

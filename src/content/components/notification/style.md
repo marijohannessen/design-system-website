@@ -52,3 +52,22 @@ The width of an Inline Notification will vary based on content.
 
 ![Structure and spacing for an inline notification](images/notification-style-2.png)
 _Structure and spacing measurements for a Inline Notification | px / rem_
+
+<div data-insert-component="InteractiveSpec">
+  <div data-notification class="bx--inline-notification bx--inline-notification--error" role="alert">
+    <div class="bx--inline-notification__details">
+      <svg class="bx--inline-notification__icon" width="16" height="16" viewBox="0 0 16 16" fill-rule="evenodd">
+        <path d="M8 0C3.6 0 0 3.6 0 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8zM5.1 13.3L3.5 12 11 2.6l1.5 1.2-7.4 9.5z"></path>
+      </svg>
+      <div class="bx--inline-notification__text-wrapper">
+        <p class="bx--inline-notification__title">Error Notification:</h3>
+          <p class="bx--inline-notification__subtitle">Here is a clear explaination of the warning</p>
+      </div>
+    </div>
+    <button data-notification-btn class="bx--inline-notification__close-button" type="button">
+      <svg class="bx--inline-notification__close-icon" aria-label="close" width="10" height="10" viewBox="0 0 10 10" fill-rule="evenodd">
+        <path d="M9.8 8.6L8.4 10 5 6.4 1.4 10 0 8.6 3.6 5 .1 1.4 1.5 0 5 3.6 8.6 0 10 1.4 6.4 5z"></path>
+      </svg>
+    </button>
+  </div>
+</div>

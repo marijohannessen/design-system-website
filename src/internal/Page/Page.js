@@ -23,6 +23,7 @@ class Page extends Component {
     content: PropTypes.any,
     label: PropTypes.string,
     title: PropTypes.string,
+    params: PropTypes.object,
   };
 
   componentDidMount() {
@@ -151,13 +152,17 @@ class Page extends Component {
         const videoProp = component.dataset.props;
         ReactDOM.render(<NewComponent videoLink={videoProp} />, component);
       } else if (comp === 'InteractiveSpec') {
-        const compChildren = component.innerHTML;
-        ReactDOM.render(
-          <NewComponent>
-            {compChildren}
-          </NewComponent>,
-          component,
-        );
+        if (this.props.params.page === 'style') {
+          const compChildren = component.innerHTML;
+          if (!component.querySelector('.spectacular-wrapper')) {
+            ReactDOM.render(
+              <NewComponent>
+                {compChildren}
+              </NewComponent>,
+              component,
+            );
+          }
+        }
       } else {
         ReactDOM.render(<NewComponent />, component);
       }
