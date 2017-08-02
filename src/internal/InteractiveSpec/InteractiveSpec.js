@@ -18,7 +18,7 @@ class InteractiveSpec extends Component {
   state = {
     padding: true,
     margin: true,
-    dimensions: false,
+    dimensions: true,
     interactiveMode: false,
     filterOptions: false
   };
@@ -44,6 +44,7 @@ class InteractiveSpec extends Component {
       mainComp.removeEventListener('click', () => this.addTwins());
       mainComp.addEventListener('mouseover', e => this.addSpecs(e));
     } else {
+      this.addTwins();
       const margins = [...this.wrapper.querySelectorAll('.margin')];
       margins.forEach(margin => {
         if (!(this.state.margin === true)) {
@@ -73,15 +74,10 @@ class InteractiveSpec extends Component {
   }
 
   addTwins = () => {
+    console.log(this.state);
     if (this.state.margin === true) {
       const marginEls = [...this.wrapper.querySelectorAll('[data-spec-margin]')];
-      let prevEl;
       marginEls.forEach(el => {
-        if (el === prevEl) {
-          console.log('same');
-        }
-        prevEl = el;
-        console.log(el.getBoundingClientRect().width);
         if (el.querySelector('.margin') === null) {
           const twin = this.createTwin(el, 'margin');
           twin.style.opacity = '.7';
@@ -89,12 +85,6 @@ class InteractiveSpec extends Component {
           const currentEl = el;
           const twin = currentEl.querySelector('.margin');
           twin.style.width = `${currentEl.getBoundingClientRect().width}px`;
-          // const afterWidth = window.getComputedStyle(currentEl, ':after').width;
-          // if (!(afterWidth === '')) {
-          //   twin.style.width = `${currentEl.getBoundingClientRect().width + +afterWidth.split('px')[0]}px`;
-          // } else {
-          //   twin.style.width = `${currentEl.getBoundingClientRect().width}px`;
-          // }
           twin.style.height = `${currentEl.getBoundingClientRect().height}px`;
           twin.style.borderTopWidth = window.getComputedStyle(currentEl).marginTop;
           twin.style.borderBottomWidth = window.getComputedStyle(
@@ -143,12 +133,6 @@ class InteractiveSpec extends Component {
           const twin = currentEl.querySelector('.dimensions');
           twin.style.borderBottom = '3px solid #FC38FC';
           twin.style.borderRight = '3px solid #FC38FC';
-          // const afterWidth = window.getComputedStyle(currentEl, ':after').getPropertyValue('width');
-          // if (!(afterWidth === '') && (this.state.dimensions === true)) {
-          //   twin.style.width = `${currentEl.getBoundingClientRect().width - +afterWidth.split('px')[0]}px`;
-          // } else {
-          //   twin.style.width = `${currentEl.getBoundingClientRect().width}px`;
-          // }
           twin.style.height = `${currentEl.getBoundingClientRect().height}px`;
           const borderTop = window.getComputedStyle(currentEl).borderTopWidth;
           twin.style.top = `-${borderTop}`;
@@ -236,7 +220,7 @@ class InteractiveSpec extends Component {
     const twin = document.createElement('span');
     const isSvg = parentComp.nodeName === 'svg' || parentComp.nodeName === 'path';
     twin.classList.add('twin-component');
-    // twin.style.width = `${parentComp.getBoundingClientRect().width}px`;
+    twin.style.width = `${parentComp.getBoundingClientRect().width}px`;
     twin.style.height = `${parentComp.getBoundingClientRect().height}px`;
     if (!(window.getComputedStyle(parentComp).position === 'absolute')) {
       parentComp.style.position = 'relative';
@@ -245,45 +229,12 @@ class InteractiveSpec extends Component {
     if (prop === 'margin') {
       twin.classList.add('margin');
       twin.classList.add('active');
-
-      // const parentChildren = [... parentComp.children];
-      // let width = 0;
-      // parentChildren.forEach(child => {
-      //   console.log(window.getComputedStyle(child).width);
-      //   width += child.getBoundingClientRect().width;
-      // });
-      // if (!(window.getComputedStyle(parentComp, ':after').width === '')) {
-      //   width += +window.getComputedStyle(parentComp, ':after').width.split('px')[0];
-      //   width += +window.getComputedStyle(parentComp, ':after').marginRight.split('px')[0];
-      //   width += +window.getComputedStyle(parentComp, ':after').marginLeft.split('px')[0];
-      // }
-      // console.log(+window.getComputedStyle(parentComp, ':after').marginRight.split('px')[0]);
-      // console.log(+window.getComputedStyle(parentComp, ':after').marginLeft.split('px')[0]);
-      // console.log(width);
-
-
-      // console.log(window.getComputedStyle(parentComp).width);
-      // console.log(parentComp.offsetWidth);
-      // console.log(parentComp.clientWidth);
-      // console.log(parentComp.width);
-      console.log(window.getComputedStyle(parentComp));
-      console.log(window.getComputedStyle(parentComp).x);
-      console.log(window.getComputedStyle(parentComp).width);
-      console.log(window.getComputedStyle(parentComp).inlineSize);
-      // console.log(parentComp);
-      // console.log(parentComp.getBoundingClientRect().width);
-      // console.log(parentComp.getBoundingClientRect());
-      // console.log(parentComp.style.width);
-      // console.log(parentComp.offsetWidth);
-      // console.log(window.getComputedStyle(parentComp).width);
-
       const afterWidth = window.getComputedStyle(parentComp, ':after').width;
       if (!(afterWidth === '')) {
         twin.style.width = `${parentComp.getBoundingClientRect().width - +afterWidth.split('px')[0]}px`;
       } else {
         twin.style.width = `${parentComp.getBoundingClientRect().width}px`;
       }
-
       twin.style.borderColor = this.props.marginColor;
       twin.style.borderTopWidth = window.getComputedStyle(spec).marginTop;
       twin.style.borderRightWidth = window.getComputedStyle(spec).marginRight;
@@ -320,10 +271,16 @@ class InteractiveSpec extends Component {
       twin.style.top = `-${borderTop}`;
     } else if (prop === 'dimensions') {
       twin.classList.add('dimensions');
-      twin.style.borderBottom = '3px solid #FC38FC';
-      twin.style.borderRight = '3px solid #FC38FC';
-      twin.style.width = window.getComputedStyle(spec).width;
-      twin.style.height = window.getComputedStyle(spec).height;
+      if (parentComp.dataset.specDimensions === 'height') {
+        twin.style.borderRight = '2px solid #FC38FC';
+      } else if (parentComp.dataset.specDimensions === 'width') {
+        twin.style.borderBottom = '2px solid #FC38FC';
+        twin.style.width = `${parentComp.getBoundingClientRect().width}px`;
+      } else {
+        twin.style.borderRight = '2px solid #FC38FC';
+        twin.style.borderBottom = '2px solid #FC38FC';
+      }
+      twin.style.height = `${parentComp.getBoundingClientRect().height + 10}px`;
       const borderTop = window.getComputedStyle(spec).borderTopWidth;
       twin.style.top = `-${borderTop}`;
       const borderLeft = window.getComputedStyle(spec).borderLeftWidth;
@@ -331,7 +288,6 @@ class InteractiveSpec extends Component {
     }
 
     if (isSvg) {
-      console.log('createTwin() - isSvg');
       const parent = spec.parentNode;
       spec.parentNode.appendChild(twin);
       const parentLeft = parent.getBoundingClientRect().left;
@@ -340,6 +296,9 @@ class InteractiveSpec extends Component {
       const childTop = spec.getBoundingClientRect().top;
       twin.style.left = `${childLeft - parentLeft}px`;
       twin.style.top = `${childTop - parentTop}px`;
+      if (prop === 'dimensions') {
+        twin.style.left = `${childLeft - parentLeft - 10}px`;
+      }
       if (!(window.getComputedStyle(parent).position === 'absolute')) {
         parent.style.position = 'relative';
       }
