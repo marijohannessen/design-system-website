@@ -39,7 +39,7 @@ _Structure and spacing measurements for Accordion | px / rem_
     data-accordion
     class="bx--accordion"
     data-spec-margin
-    data-spec-dimensions
+    data-spec-dimensions="width"
   >
     <li
       tabIndex="0"
@@ -102,6 +102,7 @@ _Structure and spacing measurements for Accordion | px / rem_
       tabIndex="0"
       data-accordion-item
       class="bx--accordion__item"
+      data-spec-dimensions="height"
     >
       <div class="bx--accordion__heading" data-spec-padding>
         <svg

@@ -271,20 +271,21 @@ class InteractiveSpec extends Component {
       twin.style.top = `-${borderTop}`;
     } else if (prop === 'dimensions') {
       twin.classList.add('dimensions');
+      const borderLeft = window.getComputedStyle(spec).borderLeftWidth;
       if (parentComp.dataset.specDimensions === 'height') {
         twin.style.borderRight = '2px solid #FC38FC';
+        twin.style.left = `-${borderLeft}`;
       } else if (parentComp.dataset.specDimensions === 'width') {
         twin.style.borderBottom = '2px solid #FC38FC';
-        twin.style.width = `${parentComp.getBoundingClientRect().width}px`;
       } else {
-        twin.style.borderRight = '2px solid #FC38FC';
         twin.style.borderBottom = '2px solid #FC38FC';
+        twin.style.borderRight = '2px solid #FC38FC';
       }
-      twin.style.height = `${parentComp.getBoundingClientRect().height + 10}px`;
+      twin.style.width = `${parentComp.getBoundingClientRect().width}px`;
+      twin.style.height = `${parentComp.getBoundingClientRect().height}px`;
       const borderTop = window.getComputedStyle(spec).borderTopWidth;
       twin.style.top = `-${borderTop}`;
-      const borderLeft = window.getComputedStyle(spec).borderLeftWidth;
-      twin.style.left = `-${borderLeft}`;
+
     }
 
     if (isSvg) {
@@ -296,9 +297,9 @@ class InteractiveSpec extends Component {
       const childTop = spec.getBoundingClientRect().top;
       twin.style.left = `${childLeft - parentLeft}px`;
       twin.style.top = `${childTop - parentTop}px`;
-      if (prop === 'dimensions') {
-        twin.style.left = `${childLeft - parentLeft - 10}px`;
-      }
+      // if (prop === 'dimensions') {
+      //   twin.style.left = `${childLeft - parentLeft - 10}px`;
+      // }
       if (!(window.getComputedStyle(parent).position === 'absolute')) {
         parent.style.position = 'relative';
       }
@@ -353,21 +354,11 @@ class InteractiveSpec extends Component {
               value="dimensions"
             />
           </div>
-          {/* <div className="interactive-mode-checkbox">
-            <Checkbox
-              onChange={this.updateSelectedSpec}
-              labelText="Interactive Mode"
-              id={Math.floor((Math.random() + 1) * 100).toString()}
-              value="interactiveMode"
-            />
-          </div> */}
         </div>
-        <div dangerouslySetInnerHTML={{ __html: this.props.children }} />
+        <div dangerouslySetInnerHTML={{ __html: this.props.children }}></div>
       </div>
     );
   }
 }
-
-// TODO: Fix checkboxes state
 
 export default InteractiveSpec;
