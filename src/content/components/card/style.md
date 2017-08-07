@@ -28,39 +28,9 @@ Card names and card information should be set in title case with the first lette
 
 There are several types of cards, each having its own measurements and attributes. Please select the appropriate card based on content and card needs. Find the measurement and visual details for each card type listed below. Card icons can be found in the [iconography](/style/iconography) page.
 
-| PROPERTY             | PX  | REM    |
-|----------------------|-----|--------|
-| Height               | 240 | 15     |
-| Width                | 200 | 12.5   |
-| Footer               | 48  | 3      |
-| Icon circle          | 50  | 3.125  |
-| Icon                 | 32  | 2      |
-| Border               | 1   | -      |
-
----
-***
-> 
-![Card structure measurements](images/card-style-1.png)
-
-_Structure measurements for a Card | px / rem_
-
-| SPACING                  | PX | REM   |
-|--------------------------|----|-------|
-| Internal                 | 16 | 1     |
-| Card top to icon         | 36 | 2.25  |
-| Icon to card name        | 24 | 1.5   |
-| Secondary Info to Footer | 48 | 3     |
-
----
-***
-> 
-![Card spacing measurements](images/card-style-2.png)
-
-_Spacing measurements for a Card | px / rem_
-
 <div data-insert-component="InteractiveSpec">
-  <article class="bx--card" tabindex="0" aria-labelledby="card-title-2">
-    <div class="bx--card__card-overview">
+  <article class="bx--card" tabindex="0" aria-labelledby="card-title-2" data-spec-dimensions="height">
+    <div class="bx--card__card-overview" data-spec-padding>
       <!-- OverflowMenu -->
       <div data-overflow-menu class="bx--overflow-menu" tabindex="0" aria-label="List of options">
         <svg class="bx--overflow-menu__icon" width="4" height="20" viewBox="0 0 4 20" fill-rule="evenodd">
@@ -86,19 +56,35 @@ _Spacing measurements for a Card | px / rem_
           </li>
         </ul>
       </div>
-      <section class="bx--card-overview__about">
+      <section class="bx--card-overview__about" data-spec-padding>
         <figure class="bx--about__icon">
           <img src="/images/placeholder.svg" alt="" class="bx--about__icon--img" />
         </figure>
-        <header class="bx--about__title">
+        <header class="bx--about__title" data-spec-padding>
           <h3 id="card-title-2" class="bx--about__title--name">Card Name</h3>
           <h4 class="bx--about__title--additional-info">Secondary Information</h4>
         </header>
     </div>
     </section>
-    <footer class="bx--card-footer">
+    <footer class="bx--card-footer" data-spec-padding data-spec-dimensions="height">
       <button class="bx--btn bx--btn--primary bx--btn--sm" type="button">View credentials</button>
       <a href="" class="bx--card-footer__link">Docs</a>
     </footer>
   </article>
 </div>
+
+| PROPERTY             | PX  | REM    |
+|----------------------|-----|--------|
+| Height               | 240 | 15     |
+| Width                | 200 | 12.5   |
+| Footer               | 48  | 3      |
+| Icon circle          | 50  | 3.125  |
+| Icon                 | 32  | 2      |
+| Border               | 1   | -      |
+
+| SPACING                  | PX | REM   |
+|--------------------------|----|-------|
+| Internal                 | 16 | 1     |
+| Card top to icon         | 36 | 2.25  |
+| Icon to card name        | 24 | 1.5   |
+| Secondary Info to Footer | 48 | 3     |

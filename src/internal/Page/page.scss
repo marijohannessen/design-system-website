@@ -61,7 +61,7 @@ td {position: relative;}
     }
   }
 
-  & > *:not(.component-example):not(.component-variation),
+  & > *:not(.component-example):not(.component-variation):not(.spectacular-wrapper),
   & > {
     .page__divider-heading {
       font-size: rem(12px);
@@ -148,7 +148,7 @@ td {position: relative;}
       margin-top: 4rem;
     }
 
-    h3 {
+    h3:not(.bx--about__title--name) {
       color: $color__blue-51;
       padding: 4rem 0 1rem;
       font-size: 1.125rem;

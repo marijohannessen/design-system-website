@@ -26,6 +26,7 @@ class InteractiveSpec extends Component {
   componentDidMount() {
     if (window.location.pathname.split('/')[3] === 'style') {
       window.CarbonComponents.Accordion.init();
+      window.CarbonComponents.OverflowMenu.init();
       const mainComp = this.wrapper.children[1].firstElementChild;
       if (this.state.interactiveMode === true) {
         mainComp.addEventListener('mouseover', e => this.addSpecs(e));
@@ -74,7 +75,6 @@ class InteractiveSpec extends Component {
   }
 
   addTwins = () => {
-    console.log(this.state);
     if (this.state.margin === true) {
       const marginEls = [...this.wrapper.querySelectorAll('[data-spec-margin]')];
       marginEls.forEach(el => {
@@ -124,21 +124,30 @@ class InteractiveSpec extends Component {
 
     if (this.state.dimensions === true) {
       const dimensEls = [...this.wrapper.querySelectorAll('[data-spec-dimensions]')];
+      let num = 1;
       dimensEls.forEach(el => {
         if (el.querySelector('.dimensions') === null) {
-          const twin = this.createTwin(el, 'dimensions');
+          const twin = this.createTwin(el, 'dimensions', num);
           twin.style.opacity = '.7';
         } else {
-          const currentEl = el;
-          const twin = currentEl.querySelector('.dimensions');
-          twin.style.borderBottom = '3px solid #FC38FC';
-          twin.style.borderRight = '3px solid #FC38FC';
-          twin.style.height = `${currentEl.getBoundingClientRect().height}px`;
-          const borderTop = window.getComputedStyle(currentEl).borderTopWidth;
+          const parentComp = el;
+          const twin = parentComp.querySelector('.dimensions');
+          const borderLeft = window.getComputedStyle(parentComp).borderLeftWidth;
+          if (parentComp.dataset.specDimensions === 'height') {
+            twin.style.borderRight = '2px solid #FC38FC';
+            twin.style.left = `-${borderLeft}`;
+          } else if (parentComp.dataset.specDimensions === 'width') {
+            twin.style.borderBottom = '2px solid #FC38FC';
+          } else {
+            twin.style.borderBottom = '2px solid #FC38FC';
+            twin.style.borderRight = '2px solid #FC38FC';
+          }
+          twin.style.width = `${parentComp.getBoundingClientRect().width}px`;
+          twin.style.height = `${parentComp.getBoundingClientRect().height}px`;
+          const borderTop = window.getComputedStyle(parentComp).borderTopWidth;
           twin.style.top = `-${borderTop}`;
-          const borderLeft = window.getComputedStyle(currentEl).borderLeftWidth;
-          twin.style.left = `-${borderLeft}`;
         }
+        num += 1.5;
       });
     } else {
       this.removeDimensionTwins();
@@ -215,7 +224,7 @@ class InteractiveSpec extends Component {
     });
   }
 
-  createTwin = (spec, prop) => {
+  createTwin = (spec, prop, num) => {
     const parentComp = spec;
     const twin = document.createElement('span');
     const isSvg = parentComp.nodeName === 'svg' || parentComp.nodeName === 'path';
@@ -225,16 +234,12 @@ class InteractiveSpec extends Component {
     if (!(window.getComputedStyle(parentComp).position === 'absolute')) {
       parentComp.style.position = 'relative';
     }
-
+    let leftVal;
+    let bottomVal;
     if (prop === 'margin') {
       twin.classList.add('margin');
       twin.classList.add('active');
-      const afterWidth = window.getComputedStyle(parentComp, ':after').width;
-      if (!(afterWidth === '')) {
-        twin.style.width = `${parentComp.getBoundingClientRect().width - +afterWidth.split('px')[0]}px`;
-      } else {
-        twin.style.width = `${parentComp.getBoundingClientRect().width}px`;
-      }
+      twin.style.width = `${parentComp.getBoundingClientRect().width}px`;
       twin.style.borderColor = this.props.marginColor;
       twin.style.borderTopWidth = window.getComputedStyle(spec).marginTop;
       twin.style.borderRightWidth = window.getComputedStyle(spec).marginRight;
@@ -270,22 +275,27 @@ class InteractiveSpec extends Component {
       twin.style.left = `-${borderLeft}`;
       twin.style.top = `-${borderTop}`;
     } else if (prop === 'dimensions') {
+      leftVal = 20 * num;
+      bottomVal = 20 * num;
       twin.classList.add('dimensions');
-      const borderLeft = window.getComputedStyle(spec).borderLeftWidth;
       if (parentComp.dataset.specDimensions === 'height') {
         twin.style.borderRight = '2px solid #FC38FC';
-        twin.style.left = `-${borderLeft}`;
+        twin.style.left = `${leftVal}px`;
       } else if (parentComp.dataset.specDimensions === 'width') {
         twin.style.borderBottom = '2px solid #FC38FC';
+        twin.style.top = `${bottomVal}px`;
       } else {
         twin.style.borderBottom = '2px solid #FC38FC';
         twin.style.borderRight = '2px solid #FC38FC';
+        twin.style.top = `${bottomVal}px`;
+        twin.style.left = `${leftVal}px`;
       }
-      twin.style.width = `${parentComp.getBoundingClientRect().width}px`;
-      twin.style.height = `${parentComp.getBoundingClientRect().height}px`;
-      const borderTop = window.getComputedStyle(spec).borderTopWidth;
-      twin.style.top = `-${borderTop}`;
-
+      const borderTop = +window.getComputedStyle(parentComp).borderTopWidth.split('px')[0];
+      const borderBottom = +window.getComputedStyle(parentComp).borderBottomWidth.split('px')[0];
+      const borderLeft = +window.getComputedStyle(parentComp).borderLeftWidth.split('px')[0];
+      const borderRight = +window.getComputedStyle(parentComp).borderRightWidth.split('px')[0];
+      twin.style.width = `${parentComp.getBoundingClientRect().width - borderLeft - borderRight}px`;
+      twin.style.height = `${parentComp.getBoundingClientRect().height - borderTop - borderBottom}px`;
     }
 
     if (isSvg) {

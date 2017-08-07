@@ -23,14 +23,6 @@ _Breadcrumb typography treatment example_
 
 The on-click dropdown should follow the [Overflow Menu](/components/overflow-menu) specs for sizing, padding, and interaction.
 
-| SPACING         | PX | REM |
-|-----------------|----|-----|
-| Title & slash   | 16 | 1   |
-| Icon & dropdown | 8  | 0.5 |
-
-![Truncated breadcrumb dropdown example](images/breadcrumb-style-2.png)
-_Structure and spacing measurements for Breadcrumb | px / rem_
-
 <div data-insert-component="InteractiveSpec">
   <div class="bx--breadcrumb" style="padding-bottom: 8px" data-spec-padding>
     <div class="bx--breadcrumb-item" id="one" data-spec-margin>
@@ -44,3 +36,8 @@ _Structure and spacing measurements for Breadcrumb | px / rem_
     </div>
   </div>
 </div>
+
+| SPACING         | PX | REM |
+|-----------------|----|-----|
+| Title & slash   | 16 | 1   |
+| Icon & dropdown | 8  | 0.5 |

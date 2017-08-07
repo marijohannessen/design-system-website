@@ -67,27 +67,22 @@ _Stucture measurements for small and regular Primary Button | px / rem_
 
 A Button cannot have any element or text within 16 pixels / 1 rem of its borders. For Button groups, the primary button is positioned on the outside of the set, while the secondary button is positioned inside. For a Button with a glyph, the space between the button label and the glyph must be greater than or equal to 16 pixels / 1 rem. This is to accommodate for instances where two or more buttons with glyphs appear together.
 
-<div data-insert-component="ImageGrid">
-  <div>
-    ![Spacing for Primary Button](images/button-style-9.png)
-  </div>
-  <div>
-    ![Spacing for small Primary Button](images/button-style-10.png)
-  </div>
-  <div>
-    ![External Button spacing](images/button-style-11.png)
-  </div>
-  <div>
-    ![Internal spacing for a Button with glyph](images/button-style-12.png)
-  </div>
-  <div>
-    ![Ghost button spacing](images/button-style-13.png)
-  </div>
-  <div>
-    ![Small Ghost button spacing](images/button-style-14.png)
-  </div>
+<div data-insert-component="InteractiveSpec">
+  <button style="margin: 16px" class="bx--btn bx--btn--secondary" type="button" data-spec-padding data-spec-margin>Secondary button</button>
+  <button style="margin: 16px" class="bx--btn bx--btn--primary" type="button" data-spec-padding data-spec-margin>
+    Button icon
+    <svg class="bx--btn__icon" width="16" height="16" viewBox="0 0 16 16" fill-rule="evenodd">
+      <path d="M8 0C3.6 0 0 3.6 0 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8zm4 9H9v3H7V9H4V7h3V4h2v3h3v2z"></path>
+    </svg>
+  </button>
+  <button style="margin: 16px" class="bx--btn bx--btn--ghost" type="button" data-spec-padding data-spec-margin>
+    Ghost
+    <svg class="bx--btn__icon" width="16" height="16" viewBox="0 0 16 16" fill-rule="evenodd">
+      <path d="M8 0C3.6 0 0 3.6 0 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8zm4 9H9v3H7V9H4V7h3V4h2v3h3v2z"></path>
+    </svg>
+  </button>
 </div>
-_Spacing measurements for various Button types | px / rem_
+<div>
 
 | SPACING                 | PX | REM   |
 |-------------------------|----|-------|

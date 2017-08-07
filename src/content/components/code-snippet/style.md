@@ -41,19 +41,11 @@ _Structure and spacing measurements for Code Snippet | px / rem_
 _Structure and spacing measurements for Copy | px / rem_
 
 <div data-insert-component="InteractiveSpec">
-  <div class="bx--snippet bx--snippet--code">
-    <div class="bx--snippet-container">
+  <div class="bx--snippet bx--snippet--code" data-spec-padding>
+    <div class="bx--snippet-container" data-spec-margin style="overflow-y: visible">
       <code>
-        <pre>
+        <pre>       
   @mixin bx--snippet($type) {
-    @if $type == 'terminal' {
-      background-color: red;
-    } @else if $type == 'code' {
-      background-color: blue;
-    } @else if $type == 'text' {
-      background-color: white;
-    }
-
     @if $type == 'terminal' {
       background-color: red;
     } @else if $type == 'code' {

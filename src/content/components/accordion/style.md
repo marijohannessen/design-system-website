@@ -31,9 +31,6 @@ There is no limit to the height of an open row, however, the padding specs below
 
 Avoid having any text within 16px / 1rem of the Accordion's sides. Additionally, include padding between labels, body copy, and separation lines to provide breathing room between elements.
 
- ![Structure and spacing measurements for Accordion](images/accordion-style-1.png)
-_Structure and spacing measurements for Accordion | px / rem_ 
-
 <div data-insert-component="InteractiveSpec">
   <ul
     data-accordion
@@ -103,6 +100,7 @@ _Structure and spacing measurements for Accordion | px / rem_
       data-accordion-item
       class="bx--accordion__item"
       data-spec-dimensions="height"
+      style="overflow: visible"
     >
       <div class="bx--accordion__heading" data-spec-padding>
         <svg
