@@ -68,7 +68,7 @@ _Stucture measurements for small and regular Primary Button | px / rem_
 A Button cannot have any element or text within 16 pixels / 1 rem of its borders. For Button groups, the primary button is positioned on the outside of the set, while the secondary button is positioned inside. For a Button with a glyph, the space between the button label and the glyph must be greater than or equal to 16 pixels / 1 rem. This is to accommodate for instances where two or more buttons with glyphs appear together.
 
 <div data-insert-component="InteractiveSpec">
-  <button style="margin: 16px" class="bx--btn bx--btn--secondary" type="button" data-spec-padding data-spec-margin>Secondary button</button>
+  <button style="margin: 16px" class="bx--btn bx--btn--secondary" type="button" data-spec-padding data-spec-margin data-spec-dimensions="height">Secondary button</button>
   <button style="margin: 16px" class="bx--btn bx--btn--primary" type="button" data-spec-padding data-spec-margin>
     Button icon
     <svg class="bx--btn__icon" width="16" height="16" viewBox="0 0 16 16" fill-rule="evenodd">

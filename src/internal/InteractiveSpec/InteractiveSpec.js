@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { Checkbox, Icon } from 'carbon-components-react';
+import { Icon, RadioButton, RadioButtonGroup } from 'carbon-components-react';
 
 class InteractiveSpec extends Component {
   static propTypes = {
@@ -16,66 +16,70 @@ class InteractiveSpec extends Component {
   };
 
   state = {
-    padding: true,
-    margin: true,
-    dimensions: true,
-    interactiveMode: false,
-    filterOptions: false
+    spec: {
+      padding: false,
+      margin: true,
+      dimensions: false,
+    },
+    filterOptions: true,
+    num: 1
   };
 
   componentDidMount() {
     if (window.location.pathname.split('/')[3] === 'style') {
       window.CarbonComponents.Accordion.init();
       window.CarbonComponents.OverflowMenu.init();
-      const mainComp = this.wrapper.children[1].firstElementChild;
-      if (this.state.interactiveMode === true) {
-        mainComp.addEventListener('mouseover', e => this.addSpecs(e));
-      } else {
-        this.addTwins();
-      }
+
+      this.addTwins();
+
+      // const mainComp = this.wrapper.children[1].firstElementChild;
+      // if (this.state.interactiveMode === true) {
+        // mainComp.addEventListener('mouseover', e => this.addSpecs(e));
+      // } else {
+      // }
     }
   }
 
   componentDidUpdate() {
-    const mainComp = this.wrapper.children[1].firstElementChild;
-    if (this.state.interactiveMode === true) {
-      [... this.wrapper.querySelectorAll('.twin-component')].forEach(twin => {
-        twin.parentNode.removeChild(twin);
-      });
-      mainComp.removeEventListener('click', () => this.addTwins());
-      mainComp.addEventListener('mouseover', e => this.addSpecs(e));
-    } else {
-      this.addTwins();
-      const margins = [...this.wrapper.querySelectorAll('.margin')];
-      margins.forEach(margin => {
-        if (!(this.state.margin === true)) {
-          margin.classList.remove('active');
-        } else {
-          margin.classList.add('active');
-        }
-      });
-      const paddings = [...this.wrapper.querySelectorAll('.padding')];
-      paddings.forEach(padding => {
-        if (!(this.state.padding === true)) {
-          padding.classList.remove('active');
-        } else {
-          padding.classList.add('active');
-        }
-      });
-      const dimensions = [...this.wrapper.querySelectorAll('.dimensions')];
-      dimensions.forEach(dimension => {
-        if (!(this.state.dimensions === true)) {
-          dimension.classList.remove('active');
-        } else {
-          dimension.classList.add('active');
-        }
-      });
-      mainComp.removeEventListener('mouseover', e => this.addSpecs(e));
-    }
+    // const mainComp = this.wrapper.children[1].firstElementChild;
+    // if (this.state.interactiveMode === true) {
+    //   [... this.wrapper.querySelectorAll('.twin-component')].forEach(twin => {
+    //     twin.parentNode.removeChild(twin);
+    //   });
+    //   mainComp.removeEventListener('click', () => this.addTwins());
+    //   mainComp.addEventListener('mouseover', e => this.addSpecs(e));
+    // } else {
+    this.addTwins();
+    const margins = [...this.wrapper.querySelectorAll('.margin')];
+    margins.forEach(margin => {
+      if (!(this.state.spec.margin === true)) {
+        margin.classList.remove('active');
+      } else {
+        margin.classList.add('active');
+      }
+    });
+    const paddings = [...this.wrapper.querySelectorAll('.padding')];
+    paddings.forEach(padding => {
+      if (!(this.state.spec.padding === true)) {
+        padding.classList.remove('active');
+      } else {
+        padding.classList.add('active');
+      }
+    });
+    const dimensions = [...this.wrapper.querySelectorAll('.dimensions')];
+    dimensions.forEach(dimension => {
+      if (!(this.state.spec.dimensions === true)) {
+        dimension.classList.remove('active');
+      } else {
+        dimension.classList.add('active');
+      }
+    });
+    //   mainComp.removeEventListener('mouseover', e => this.addSpecs(e));
+    // }
   }
 
-  addTwins = () => {
-    if (this.state.margin === true) {
+  addTwins = () => { // eslint-disable-line
+    if (this.state.spec.margin === true) {
       const marginEls = [...this.wrapper.querySelectorAll('[data-spec-margin]')];
       marginEls.forEach(el => {
         if (el.querySelector('.margin') === null) {
@@ -99,7 +103,7 @@ class InteractiveSpec extends Component {
     }
 
     // Add padding twins
-    if (this.state.padding === true) {
+    if (this.state.spec.padding === true) {
       const paddingEls = [...this.wrapper.querySelectorAll('[data-spec-padding]')];
       paddingEls.forEach(el => {
         if (el.querySelector('.padding') === null) {
@@ -121,84 +125,99 @@ class InteractiveSpec extends Component {
     } else {
       this.removePaddingTwins();
     }
-
-    if (this.state.dimensions === true) {
+    // DIMENSIONS
+    if (this.state.spec.dimensions === true) {
       const dimensEls = [...this.wrapper.querySelectorAll('[data-spec-dimensions]')];
       let num = 1;
+      let heights = 0;
       dimensEls.forEach(el => {
+        if (el.dataset.specDimensions === 'height') {
+          heights++;
+        }
+        if (heights > 1) {
+          num += 1.5;
+        }
         if (el.querySelector('.dimensions') === null) {
-          const twin = this.createTwin(el, 'dimensions', num);
-          twin.style.opacity = '.7';
+          const twin = this.createTwin(el, 'dimensions', num); // eslint-disable-line
+          // twin.style.opacity = '.7';
         } else {
           const parentComp = el;
+
+          // Twin
           const twin = parentComp.querySelector('.dimensions');
+
+          // The border left width
           const borderLeft = window.getComputedStyle(parentComp).borderLeftWidth;
+
+          // The border top width
+          const borderTop = window.getComputedStyle(parentComp).borderTopWidth;
+
           if (parentComp.dataset.specDimensions === 'height') {
+            twin.classList.add('height');
             twin.style.borderRight = '2px solid #FC38FC';
             twin.style.left = `-${borderLeft}`;
           } else if (parentComp.dataset.specDimensions === 'width') {
+            twin.classList.add('width');
             twin.style.borderBottom = '2px solid #FC38FC';
+            twin.style.top = `-${borderTop}`;
           } else {
             twin.style.borderBottom = '2px solid #FC38FC';
             twin.style.borderRight = '2px solid #FC38FC';
           }
           twin.style.width = `${parentComp.getBoundingClientRect().width}px`;
           twin.style.height = `${parentComp.getBoundingClientRect().height}px`;
-          const borderTop = window.getComputedStyle(parentComp).borderTopWidth;
-          twin.style.top = `-${borderTop}`;
         }
-        num += 1.5;
       });
     } else {
       this.removeDimensionTwins();
     }
   }
 
-  addSpecs = e => {
-    const currentEl = e.target;
-    currentEl.classList.add('parent-component');
-    const isTwin = currentEl.classList.contains('twin-component');
+  // addSpecs = e => {
+  //   const currentEl = e.target;
+  //   currentEl.classList.add('parent-component');
+  //   const isTwin = currentEl.classList.contains('twin-component');
 
-    if (!isTwin) {
-      let hasMarginTwin = false;
-      let hasPaddingTwin = false;
-      let hasDimensionTwin = false;
+  //   if (!isTwin) {
+  //     let hasMarginTwin = false;
+  //     let hasPaddingTwin = false;
+  //     let hasDimensionTwin = false;
 
-      [...currentEl.children].forEach(child => {
-        hasMarginTwin = child.classList.contains('margin');
-        hasPaddingTwin = child.classList.contains('padding');
-        hasDimensionTwin = child.classList.contains('dimensions');
-      });
+  //     [...currentEl.children].forEach(child => {
+  //       hasMarginTwin = child.classList.contains('margin');
+  //       hasPaddingTwin = child.classList.contains('padding');
+  //       hasDimensionTwin = child.classList.contains('dimensions');
+  //     });
 
-      const noMarginValues =
-        window.getComputedStyle(currentEl).margin === '0px';
-      const noPaddingValues =
-        window.getComputedStyle(currentEl).padding === '0px';
+  //     const noMarginValues =
+  //       window.getComputedStyle(currentEl).margin === '0px';
+  //     const noPaddingValues =
+  //       window.getComputedStyle(currentEl).padding === '0px';
 
-      if (!(noMarginValues && noPaddingValues)) {
-        if (this.state.margin === true && !hasMarginTwin && !noMarginValues) {
-          const twin = this.createTwin(currentEl, 'margin'); // eslint-disable-line
-        }
+  //     if (!(noMarginValues && noPaddingValues)) {
+  //       if (this.state.spec.margin === true && !hasMarginTwin && !noMarginValues) {
+  //         const twin = this.createTwin(currentEl, 'margin'); // eslint-disable-line
+  //       }
 
-        if (
-          this.state.padding === true &&
-          !hasPaddingTwin &&
-          !noPaddingValues
-        ) {
-          const twin = this.createTwin(currentEl, 'padding'); // eslint-disable-line
-        }
+  //       if (
+  //         this.state.spec.padding === true &&
+  //         !hasPaddingTwin &&
+  //         !noPaddingValues
+  //       ) {
+  //         const twin = this.createTwin(currentEl, 'padding'); // eslint-disable-line
+  //       }
 
-        if (this.state.dimensions === true && !hasDimensionTwin) {
-          const twin = this.createTwin(currentEl, 'dimensions'); // eslint-disable-line
-        }
-      }
-    }
-    if (this.state.interactiveMode === true) {
-      currentEl.addEventListener('mouseout', () => this.removeTwins(currentEl));
-    } else {
-      currentEl.removeEventListener('mouseout', () => this.removeTwins(currentEl));
-    }
-  };
+  //       if (this.state.spec.dimensions === true && !hasDimensionTwin) {
+  //         const twin = this.createTwin(currentEl, 'dimensions'); // eslint-disable-line
+  //       }
+  //     }
+  //   }
+  //   if (this.state.interactiveMode === true) {
+  //     currentEl.addEventListener('mouseout', () => this.removeTwins(currentEl));
+  //   } else {
+  //     currentEl.removeEventListener('mouseout', () => this.removeTwins(currentEl));
+  //   }
+  // };
 
   removeTwins = (currentEl) => {
     [...currentEl.querySelectorAll('.twin-component')].forEach(twin => {
@@ -279,11 +298,17 @@ class InteractiveSpec extends Component {
       bottomVal = 20 * num;
       twin.classList.add('dimensions');
       if (parentComp.dataset.specDimensions === 'height') {
+        twin.classList.add('height');
         twin.style.borderRight = '2px solid #FC38FC';
         twin.style.left = `${leftVal}px`;
+        twin.style.top = '0px';
+        twin.innerHTML = `<span><p>${parentComp.getBoundingClientRect().height.toFixed()}px</p></span>`;
+        twin.querySelector('p').style.right = `${50 + (41 - twin.querySelector('p').getBoundingClientRect().width)}px`;
       } else if (parentComp.dataset.specDimensions === 'width') {
+        twin.classList.add('width');
         twin.style.borderBottom = '2px solid #FC38FC';
         twin.style.top = `${bottomVal}px`;
+        twin.innerHTML = `<span><p>${parentComp.getBoundingClientRect().width.toFixed()}px</p></span>`;
       } else {
         twin.style.borderBottom = '2px solid #FC38FC';
         twin.style.borderRight = '2px solid #FC38FC';
@@ -296,6 +321,12 @@ class InteractiveSpec extends Component {
       const borderRight = +window.getComputedStyle(parentComp).borderRightWidth.split('px')[0];
       twin.style.width = `${parentComp.getBoundingClientRect().width - borderLeft - borderRight}px`;
       twin.style.height = `${parentComp.getBoundingClientRect().height - borderTop - borderBottom}px`;
+      parentComp.addEventListener('mouseover', () => {
+        twin.classList.add('hovered');
+      });
+      parentComp.addEventListener('mouseout', () => {
+        twin.classList.remove('hovered');
+      });
     }
 
     if (isSvg) {
@@ -307,9 +338,6 @@ class InteractiveSpec extends Component {
       const childTop = spec.getBoundingClientRect().top;
       twin.style.left = `${childLeft - parentLeft}px`;
       twin.style.top = `${childTop - parentTop}px`;
-      // if (prop === 'dimensions') {
-      //   twin.style.left = `${childLeft - parentLeft - 10}px`;
-      // }
       if (!(window.getComputedStyle(parent).position === 'absolute')) {
         parent.style.position = 'relative';
       }
@@ -319,11 +347,23 @@ class InteractiveSpec extends Component {
     return twin;
   };
 
-  updateSelectedSpec = (checked, prop, e) => {
+  updateSelectedSpec = (e) => {
     this.setState({
-      [e.target.value]: checked,
+      spec: {
+        [e]: true,
+      }
     });
   };
+
+  getDefaultSelected = () => {
+    let val;
+    Object.keys(this.state.spec).map(i => {
+      if (this.state.spec[i] === true) {
+        val = i;
+      }
+    });
+    return val;
+  }
 
   render() {
     const checkboxesClasses = classNames({
@@ -342,27 +382,23 @@ class InteractiveSpec extends Component {
             <Icon name="icon--filter" description="Toggle filter options" className="filter-icon" />
           </div>
           <div className={checkboxesClasses}>
-            <Checkbox
-              onChange={this.updateSelectedSpec}
-              checked={this.state.margin === true}
-              labelText="Margin"
-              id={Math.floor((Math.random() + 1) * 100).toString()}
-              value="margin"
-            />
-            <Checkbox
-              onChange={this.updateSelectedSpec}
-              checked={this.state.padding === true}
-              labelText="Padding"
-              id={Math.floor((Math.random() + 1) * 100).toString()}
-              value="padding"
-            />
-            <Checkbox
-              onChange={this.updateSelectedSpec}
-              checked={this.state.dimensions === true}
-              labelText="Dimensions"
-              id={Math.floor((Math.random() + 1) * 100).toString()}
-              value="dimensions"
-            />
+            <RadioButtonGroup name="radio-buttons" defaultSelected={this.getDefaultSelected()} onChange={this.updateSelectedSpec}>
+              <RadioButton
+                labelText="Margin"
+                id={Math.floor((Math.random() + 1) * 100).toString()}
+                value="margin"
+              />
+              <RadioButton
+                labelText="Padding"
+                id={Math.floor((Math.random() + 1) * 100).toString()}
+                value="padding"
+              />
+              <RadioButton
+                labelText="Dimensions"
+                id={Math.floor((Math.random() + 1) * 100).toString()}
+                value="dimensions"
+              />
+            </RadioButtonGroup>
           </div>
         </div>
         <div dangerouslySetInnerHTML={{ __html: this.props.children }}></div>
