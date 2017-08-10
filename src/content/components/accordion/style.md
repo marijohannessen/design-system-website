@@ -42,8 +42,9 @@ Avoid having any text within 16px / 1rem of the Accordion's sides. Additionally,
       tabIndex="0"
       data-accordion-item
       class="bx--accordion__item bx--accordion__item--active"
+      style="overflow: visible"
     >
-      <div class="bx--accordion__heading" data-spec-padding>
+      <div class="bx--accordion__heading" data-spec-padding data-spec-label="Label">
         <svg
           class="bx--accordion__arrow"
           width="8"
@@ -70,6 +71,7 @@ Avoid having any text within 16px / 1rem of the Accordion's sides. Additionally,
       tabIndex="0"
       data-accordion-item
       class="bx--accordion__item"
+      style="overflow: visible"
     >
       <div class="bx--accordion__heading" data-spec-padding>
         <svg
@@ -127,6 +129,7 @@ Avoid having any text within 16px / 1rem of the Accordion's sides. Additionally,
       tabIndex="0"
       data-accordion-item
       class="bx--accordion__item"
+      style="overflow: visible"
     >
       <div class="bx--accordion__heading" data-spec-padding>
         <svg

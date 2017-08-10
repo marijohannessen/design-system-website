@@ -4,7 +4,6 @@
   margin-top: 2rem;
   margin-bottom: 2rem;
   width: 100%;
-  // max-width: 38rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -12,6 +11,8 @@
   padding: 1rem;
   height: 100%;
   min-height: 400px;
+  padding-top: 5rem;
+  padding-bottom: 3rem;
 
   & > * {
     max-width: 38rem;
@@ -65,20 +66,14 @@
     position: absolute;
     top: 0;
     left: 0;
-    margin-bottom: 4rem;
     margin-left: 1rem;
     transition: 300ms ease;
-    transform: translateX(-100%);
     z-index: 1;
     height: 50px;
 
   .bx--radio-button-group {
     margin: 0;
   }
-
-    &--active {
-      transform: translateX(50px);
-    }
   }
 
   .bx--form-item.bx--checkbox-wrapper {
@@ -112,10 +107,6 @@
 
 .parent-component:hover {
   cursor: pointer;
-
-  .twin-component {
-    opacity: 1;
-  }
 }
 
 .twin-component {
@@ -124,7 +115,7 @@
   border-style: solid;
   pointer-events: none;
   transition: opacity 300ms ease;
-  opacity: 0;
+  opacity: 1;
 
   &.active {
     display: block;
@@ -158,6 +149,9 @@
       position: relative;
       width: 100%;
       height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
       &:after {
         content: '|';
@@ -180,12 +174,8 @@
       }
 
       p {
-        font-size: 12px;
-        color: white;
         position: absolute;
-        right: -50px;
-        padding: .5rem;
-        background-color: #FC38FC;
+        right: -40px;
         top: 0;
         bottom: 0;
         margin: auto;
@@ -199,6 +189,9 @@
       position: relative;
       width: 100%;
       height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
       &:after {
         content: '|';
@@ -219,22 +212,22 @@
       }
 
       p {
-        font-size: 12px;
-        color: white;
         position: absolute;
         bottom: -30px;
         left: 45%;
-        padding: .5rem;
-        background-color: #FC38FC;
       }
     }
   }
 
   span p {
-    height: 20px;
-    padding: 0 .5rem;
-    line-height: .25;
-    margin-left: 1rem;
+    @include layer('overlay');
+    padding: 0 4px;
+    font-size: 12px;
+    color:#007D7D;
+    background-color: white;
+    border-radius: 5px;
+    color: #FC38FC;
+    height: 16px;
   }
 }
 
@@ -247,4 +240,73 @@
   position: absolute;
   bottom: 0;
   left: 0;
+}
+
+.margin {
+  span.top,
+  span.right,
+  span.bottom,
+  span.left {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    opacity: 1;
+
+    p {
+      @include layer('overlay');
+      padding: 0 4px;
+      font-size: 12px;
+      color:#007D7D;
+      background-color: white;
+      border-radius: 5px;
+    }
+
+    p:empty {
+      display: none;
+    }
+  }
+}
+
+.padding {
+  span.top,
+  span.right,
+  span.bottom,
+  span.left {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    opacity: 1;
+    z-index: 9999;
+
+    p {
+      @include layer('overlay');
+      padding: 0 4px;
+      font-size: 12px;
+      color:#007D7D;
+      background-color: white;
+      border-radius: 5px;
+    }
+
+    p:empty {
+      display: none;
+    }
+  }
+
+  span.top,
+  span.bottom {
+    width: auto;
+    height: auto;
+  }
+}
+
+.twin-component span p {
+  opacity: 0 !important;
+}
+
+.parent-component:hover > .twin-component span p {
+  opacity: 1 !important;
 }
